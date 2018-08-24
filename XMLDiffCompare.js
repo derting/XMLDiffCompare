@@ -91,7 +91,6 @@ function ChildrenCompare(OriNodes, CurrNodes, parentNode)
           break;
         }
 
-
         //檢查刪除-----------------------------------------------
         if(Curr.length-1 == j)
         {
@@ -134,12 +133,8 @@ function ChildrenCompare(OriNodes, CurrNodes, parentNode)
         }
         else if(Node.type == 'text')
         {
-
             break;
-      
         }
-        
-
 
         if(Ori.length-1 == j)
         {
@@ -149,10 +144,6 @@ function ChildrenCompare(OriNodes, CurrNodes, parentNode)
       }
     }
   }
-
-
-
-
 
   return Modify;
 }
@@ -242,8 +233,6 @@ function AddCommentForSpecifyNode_Delete(OriginalDom, CurrentDom, SpecifyNode)
       newDOM = new DOMParser().parseFromString(str,'text/xml');
   }
 
-
-
   CurrentDom = new DOMParser().parseFromString(CurrentDom.toString(),'text/xml');
   var item = FindNodeFromDOMParser(CurrentDom, SpecifyNode.parent.name, SpecifyNode.parent.attributes, SpecifyNode.parent, SpecifyNode.parent.parent);
   item.appendChild(newDOM);
@@ -280,7 +269,6 @@ function AddCommentForSpecifyNode_Update_Add(CurrentDom, SpecifyNode, Type)
     tmpDom.insertBefore(tmpDom.createComment(' End, ' + Type + ' these nodes. '), item.nextSibling);
   }
 
-  
   return tmpDom;
 }
 
@@ -630,7 +618,6 @@ function NormalizationEnd(xmlStr)
   }
   return DOM.toString();
 }
-
 
 //產出ModifyAfter檔案
 function CreateModifyAfterFile(DOMStr, targetPath)

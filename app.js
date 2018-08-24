@@ -1,4 +1,4 @@
-const CB = require("./ConfigBuilder");
+const DC = require("./XMLDiffCompare");
 const fs = require('fs')
 
 const Ori = process.argv[2];
@@ -14,21 +14,21 @@ if(!fs.existsSync(Ori) || !fs.existsSync(Curr))
 }
 
 //##Get files.
-var Xml = CB.OpenXMLProcess(Ori, Curr);
+var Xml = DC.OpenXMLProcess(Ori, Curr);
 
 //##Compare files.
-var Changing = CB.ChildrenCompare(Xml.OriginalQuery.children(), Xml.CurrentQuery.children(), Xml.OriginalQuery.get(0));
+var Changing = DC.ChildrenCompare(Xml.OriginalQuery.children(), Xml.CurrentQuery.children(), Xml.OriginalQuery.get(0));
 console.log("[Debug] Get " + Changing.length + " modify.");
 
 if(Changing.length > 0)
 {
 //##Add changing comment from ChangingArray
-var FullXML = CB.AddChangingComment(Changing, Xml.OriginalDOM, Xml.CurrentDOM);
+var FullXML = DC.AddChangingComment(Changing, Xml.OriginalDOM, Xml.CurrentDOM);
 
 
-var ClearXML = CB.ConfigClear(FullXML);
+var ClearXML = DC.ConfigClear(FullXML);
 //##Export XML.
-CB.CreateModifyAfterFile(ClearXML, TargetPath);
+DC.CreateModifyAfterFile(ClearXML, TargetPath);
 }
 
 process.exit();
